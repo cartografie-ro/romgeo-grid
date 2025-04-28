@@ -1,0 +1,40 @@
+name: Alpha to Beta Promotion
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (e.g., 25.04)'
+        required: true
+        type: string
+
+jobs:
+  move-alpha-to-beta:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Promote Alpha to Beta
+      run: |
+        VERSION="${{ inputs.version }}"
+        echo "Promoting Alpha to Beta for version $VERSION"
+
+        mkdir -p grids/$VERSION-beta
+        mv grids/${VERSION}-alpha/* grids/$VERSION-beta/
+
+        for file in grids/${VERSION}-beta/*; do
+          if [[ "$file" == *"-alpha"* ]]; then
+            newfile=$(echo "$file" | sed "s/-alpha/-beta/")
+            mv "$file" "$newfile"
+          fi
+        done
+
+        rm -rf grids/${VERSION}-alpha
+
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add grids/
+        git commit -m "Promoted Alpha to Beta for version $VERSION"
+        git push
