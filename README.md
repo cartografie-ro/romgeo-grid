@@ -1,5 +1,7 @@
 # ROMGEO Grid Files
 
+[🇬🇧 English](README.md) | [🇷🇴 Română](README_ro.md)
+
 ![Latest Grid](https://img.shields.io/badge/Latest_Grid-25.04-blue)
 
 This repository contains the ROMGEO correction grids used for precise geodetic transformations.
@@ -30,39 +32,3 @@ Publishing is manually triggered via GitHub Actions:
 ## 📄 SPG File Specifications
 
 The SPG file structure is described in detail [here](spg_file_specs.md).
-
-### Quick Overview
-
-#### Top-Level Structure:
-- `params` (dictionary):
-  - `geodetic_shifts_file` (str)
-  - `geoid_heights_file` (str)
-  - `version` (str)
-  - `output_file` (str)
-  - `helmert` (dictionary) — Helmert transformation parameters
-
-- `grids` (dictionary):
-  - `geodetic_shifts` (dictionary)
-  - `geoid_heights` (dictionary)
-
-- `metadata` (dictionary):
-  - License, author, versioning, validity periods, etc.
-
-Each grid contains:
-- **Name**, **source**, **target**
-- **Metadata** (dimensions, extents, resolution)
-- **Grid Data** (NumPy array, float32 precision)
-
-### Helmert Transform Example:
-```text
-helmert:
-  os_st70:
-    tE: (float)
-    tN: (float)
-    dm: (float)
-    Rz: (float)
-  st70_os:
-    tE: (float)
-    tN: (float)
-    dm: (float)
-    Rz: (float)
