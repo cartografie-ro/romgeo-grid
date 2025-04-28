@@ -32,11 +32,13 @@ jobs:
         echo "Publishing Alpha for version $VERSION"
         
         mkdir -p grids/$VERSION-beta
-        cp grids/${VERSION}-alpha/* grids/${VERSION}-beta/
+        cp -r grids/${VERSION}-alpha/* grids/${VERSION}-beta/
         
         for file in grids/${VERSION}-beta/*; do
-          newfile=$(echo "$file" | sed "s/-alpha/-beta/")
-          mv "$file" "$newfile"
+          if [[ "$file" == *"-alpha"* ]]; then
+            newfile=$(echo "$file" | sed "s/-alpha/-beta/")
+            mv "$file" "$newfile"
+          fi
         done
 
         git config user.name "github-actions"
@@ -52,11 +54,13 @@ jobs:
         echo "Publishing Beta to Final for version $VERSION"
 
         mkdir -p grids/$VERSION
-        cp grids/${VERSION}-beta/* grids/$VERSION/
+        cp -r grids/${VERSION}-beta/* grids/$VERSION/
         
         for file in grids/${VERSION}/*; do
-          newfile=$(echo "$file" | sed "s/-beta//")
-          mv "$file" "$newfile"
+          if [[ "$file" == *"-beta"* ]]; then
+            newfile=$(echo "$file" | sed "s/-beta//")
+            mv "$file" "$newfile"
+          fi
         done
 
         git config user.name "github-actions"
@@ -70,14 +74,11 @@ jobs:
       run: |
         VERSION="${{ inputs.version }}"
         echo "Publishing Final to Latest: $VERSION"
-    
+
         rm -rf grids/latest
         mkdir -p grids/latest
-        cp grids/$VERSION/* grids/latest/
-    
-        # Create version.txt
-        echo "$VERSION" > grids/latest/version.txt
-    
+        cp -r grids/$VERSION/* grids/latest/
+
         git config user.name "github-actions"
         git config user.email "github-actions@github.com"
         git add grids/latest
