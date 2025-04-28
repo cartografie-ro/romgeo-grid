@@ -25,8 +25,8 @@ jobs:
         mkdir -p grids/latest
         cp grids/$VERSION/* grids/latest/
 
-        if [ -f grids/latest/grid_${VERSION}.spg ]; then
-          mv grids/latest/grid_${VERSION}.spg grids/latest/latest.spg
+        if [ -f grids/latest/grid-${VERSION}.spg ]; then
+          mv grids/latest/grid-${VERSION}.spg grids/latest/latest.spg
         fi
 
         git config user.name "github-actions"
