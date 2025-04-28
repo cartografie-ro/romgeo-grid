@@ -1,0 +1,85 @@
+name: RomGEO Grid Publishing
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: 'Stage to publish (alpha, beta, latest)'
+        required: true
+        default: 'alpha'
+        type: choice
+        options:
+          - alpha
+          - beta
+          - latest
+      version:
+        description: 'Grid version (e.g., 25.04)'
+        required: true
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Publish Alpha ➔ Beta
+      if: inputs.stage == 'alpha'
+      run: |
+        VERSION="${{ inputs.version }}"
+        echo "Publishing Alpha for version $VERSION"
+        
+        mkdir -p grids/$VERSION-beta
+        cp grids/${VERSION}-alpha/* grids/${VERSION}-beta/
+        
+        for file in grids/${VERSION}-beta/*; do
+          newfile=$(echo "$file" | sed "s/-alpha/-beta/")
+          mv "$file" "$newfile"
+        done
+
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add grids/${VERSION}-beta
+        git commit -m "Publish Beta: $VERSION"
+        git push
+
+    - name: Publish Beta ➔ Final
+      if: inputs.stage == 'beta'
+      run: |
+        VERSION="${{ inputs.version }}"
+        echo "Publishing Beta to Final for version $VERSION"
+
+        mkdir -p grids/$VERSION
+        cp grids/${VERSION}-beta/* grids/$VERSION/
+        
+        for file in grids/${VERSION}/*; do
+          newfile=$(echo "$file" | sed "s/-beta//")
+          mv "$file" "$newfile"
+        done
+
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add grids/$VERSION
+        git commit -m "Publish Final: $VERSION"
+        git push
+
+    - name: Publish Final ➔ Latest
+      if: inputs.stage == 'latest'
+      run: |
+        VERSION="${{ inputs.version }}"
+        echo "Publishing Final to Latest: $VERSION"
+    
+        rm -rf grids/latest
+        mkdir -p grids/latest
+        cp grids/$VERSION/* grids/latest/
+    
+        # Create version.txt
+        echo "$VERSION" > grids/latest/version.txt
+    
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add grids/latest
+        git commit -m "Update Latest to: $VERSION"
+        git push
