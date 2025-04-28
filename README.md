@@ -2,8 +2,6 @@
 
 ![Latest Grid](https://img.shields.io/badge/Latest_Grid-25.04-blue)
 
-![Latest Grid](https://img.shields.io/badge/Latest_Grid-$(curl -s https://raw.githubusercontent.com/YOUR_USER/YOUR_REPO/main/grids/latest/version.txt)-blue)
-
 This repository contains the ROMGEO correction grids used for precise geodetic transformations.
 
 ---
