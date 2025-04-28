@@ -1,0 +1,36 @@
+name: Pre-Release to Latest Promotion
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (e.g., 25.04)'
+        required: true
+        type: string
+
+jobs:
+  move-pre-release-to-latest:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Promote Pre-Release to Latest
+      run: |
+        VERSION="${{ inputs.version }}"
+        echo "Promoting Pre-Release to Latest for version $VERSION"
+
+        rm -rf grids/latest
+        mkdir -p grids/latest
+        cp grids/$VERSION/* grids/latest/
+
+        if [ -f grids/latest/grid_${VERSION}.spg ]; then
+          mv grids/latest/grid_${VERSION}.spg grids/latest/latest.spg
+        fi
+
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add grids/latest
+        git commit -m "Updated Latest grid to version $VERSION"
+        git push
