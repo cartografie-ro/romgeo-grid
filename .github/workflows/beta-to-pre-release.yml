@@ -1,0 +1,44 @@
+name: Beta to Pre-Release Promotion
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (e.g., 25.04)'
+        required: true
+        type: string
+
+jobs:
+  move-beta-to-pre-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Promote Beta to Stable and Update Pre-Release
+      run: |
+        VERSION="${{ inputs.version }}"
+        echo "Promoting Beta to Stable (final version) and updating Pre-Release link for version $VERSION"
+
+        mkdir -p grids/$VERSION
+        mv grids/${VERSION}-beta/* grids/$VERSION/
+
+        for file in grids/${VERSION}/*; do
+          if [[ "$file" == *"-beta"* ]]; then
+            newfile=$(echo "$file" | sed "s/-beta//")
+            mv "$file" "$newfile"
+          fi
+        done
+
+        rm -rf grids/${VERSION}-beta
+        rm -rf grids/pre-release
+
+        mkdir -p grids/pre-release
+        cp grids/$VERSION/* grids/pre-release/
+
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add grids/
+        git commit -m "Promoted Beta to Final and Updated Pre-Release for version $VERSION"
+        git push
