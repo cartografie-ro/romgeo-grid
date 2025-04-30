@@ -2,29 +2,6 @@
 
 [🇬🇧 English](spg_file_specs.md) | [🇷🇴 Română](spg_file_specs_ro.md)
 
-Acest document descrie structura fișierelor `.spg` (Pachet de Grilă Spațială) utilizate în proiectul ROMGEO.
-
----
-
-## Structura Principală
-
-- **`params`** (`dict`): Parametri generali și transformări.
-- **`grids`** (`dict`): Grile de deplasare geodezică și de înălțime geoidică.
-- **`metadata`** (`dict`): Metadate și informații despre versiune.
-
----
-
-## `params` (dicționar)
-
-Parametri generali de procesare:
-
-- `geodetic_shifts_file` (`str`): Calea către grila de deplasare geodezică.
-- `geoid_heights_file` (`str`): Calea către grila de înălțime geoidică.
-- `version` (`str`): Identificator de versiune.
-- `output_file` (`str`): Calea fișierului de ieșire.
-- `helmert` (`dict`): Parametrii transformării Helmert.# Specificații Fișier SPG
-
-[🇬🇧 English](spg_file_specs.md) | [🇷🇴 Română](spg_file_specs_ro.md)
 
 Acest document descrie structura fișierelor `.spg` (Pachet de Grilă Spațială) utilizate în proiectul ROMGEO.
 
