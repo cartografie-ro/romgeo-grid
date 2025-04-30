@@ -24,12 +24,7 @@ jobs:
         mkdir -p grids/$VERSION-beta
         mv grids/${VERSION}-alpha/* grids/$VERSION-beta/
 
-        for file in grids/${VERSION}-beta/*; do
-          if [[ "$file" == *"-alpha"* ]]; then
-            newfile=$(echo "$file" | sed "s/-alpha/-beta/")
-            mv "$file" "$newfile"
-          fi
-        done
+        mv grids/$VERSION-beta/rom_grid3d_${VERSION}-alpha.spg grids/$VERSION-beta/rom_grid3d_${VERSION}-beta.spg
 
         rm -rf grids/${VERSION}-alpha
 
