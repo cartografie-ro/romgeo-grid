@@ -10,22 +10,14 @@ This repository contains the ROMGEO correction grids used for precise geodetic t
 
 ## 📂 Structure
 - `grids/YY.MM-alpha/` — Alpha stage grids
-- `grids/YY.MM-beta/` — Beta stage grids (pre-release)
+- `grids/YY.MM-beta/` — Beta stage grids
 - `grids/YY.MM/` — Final released grids
+- `grids/pre-release/` — Next in line grid to be released
 - `grids/latest/` — Latest official released version
 
 Each version contains:
-- `grid_YY.MM.spg` — Binary grid file
+- `rom_grid3d_YY.MM.spg` — Binary grid file
 - `metadata.json` — Descriptive metadata
-
----
-
-## 🚀 Publishing Workflow
-
-Publishing is manually triggered via GitHub Actions:
-- `publish-alpha`: Promote an alpha version to beta.
-- `publish-beta`: Promote a beta version to final release.
-- `publish-latest`: Update the `latest/` pointer to the newest release.
 
 ---
 
