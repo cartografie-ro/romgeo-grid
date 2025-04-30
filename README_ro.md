@@ -2,7 +2,7 @@
 
 [🇬🇧 English](README.md) | [🇷🇴 Română](README_ro.md)
 
-![Ultimul Grid](https://img.shields.io/badge/Ultimul_Grid-25.04-blue)
+![Ultimul Grid](https://img.shields.io/badge/Ultimul_Grid-4.08-blue)
 
 Acest repository conține grilele de corecție ROMGEO utilizate pentru transformări geodezice precise.
 
