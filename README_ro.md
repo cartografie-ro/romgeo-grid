@@ -9,10 +9,10 @@ Acest repository conține grilele de corecție ROMGEO utilizate pentru transform
 ---
 
 ## 📂 Structura
-- `grids/YY.MM-alpha/` — Grile în stadiu alpha
-- `grids/YY.MM-beta/` — Grile beta
-- `grids/YY.MM/` — Grile lansate oficial
-- `grids/pre-release/` — Grile ce urmeaza a fi publicat
+- `grids/YY.MM-alpha/` — Grid în stadiu alpha
+- `grids/YY.MM-beta/` — Grid beta
+- `grids/YY.MM/` — Grid lansate oficial
+- `grids/pre-release/` — Grid ce urmeaza a fi publicat
 - `grids/latest/` — Ultima versiune oficială
 
 Fiecare versiune conține:
