@@ -19,17 +19,12 @@ jobs:
     - name: Promote Beta to Stable and Update Pre-Release
       run: |
         VERSION="${{ inputs.version }}"
-        echo "Promoting Beta to Stable (final version) and updating Pre-Release link for version $VERSION"
+        echo "Promoting Beta to Stable and updating Pre-Release for version $VERSION"
 
         mkdir -p grids/$VERSION
         mv grids/${VERSION}-beta/* grids/$VERSION/
 
-        for file in grids/${VERSION}/*; do
-          if [[ "$file" == *"-beta"* ]]; then
-            newfile=$(echo "$file" | sed "s/-beta//")
-            mv "$file" "$newfile"
-          fi
-        done
+        mv grids/$VERSION/rom_grid3d_${VERSION}-beta.spg grids/$VERSION/rom_grid3d_${VERSION}.spg
 
         rm -rf grids/${VERSION}-beta
         rm -rf grids/pre-release
@@ -40,5 +35,5 @@ jobs:
         git config user.name "github-actions"
         git config user.email "github-actions@github.com"
         git add grids/
-        git commit -m "Promoted Beta to Final and Updated Pre-Release for version $VERSION"
+        git commit -m "Promoted Beta to Stable and Updated Pre-Release for version $VERSION"
         git push
