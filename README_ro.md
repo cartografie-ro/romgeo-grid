@@ -10,22 +10,14 @@ Acest repository conține grilele de corecție ROMGEO utilizate pentru transform
 
 ## 📂 Structura
 - `grids/YY.MM-alpha/` — Grile în stadiu alpha
-- `grids/YY.MM-beta/` — Grile pre-lansare (beta)
+- `grids/YY.MM-beta/` — Grile beta
 - `grids/YY.MM/` — Grile lansate oficial
+- `grids/pre-release/` — Grile ce urmeaza a fi publicat
 - `grids/latest/` — Ultima versiune oficială
 
 Fiecare versiune conține:
-- `grid_YY.MM.spg` — Fişier grid binar
+- `rom_grid3d_YY.MM.spg` — Fişier grid binar
 - `metadata.json` — Metadate descriptive
-
----
-
-## 🚀 Flux de Publicare
-
-Publicarea se declanșează manual prin GitHub Actions:
-- `publish-alpha`: Promovează o versiune alpha la beta.
-- `publish-beta`: Promovează o versiune beta la lansare oficială.
-- `publish-latest`: Actualizează linkul `latest/` către ultima versiune.
 
 ---
 
