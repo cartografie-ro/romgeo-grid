@@ -1,34 +1,43 @@
-name: Pre-Release to Latest Promotion
+name: Promote to Latest
 
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Version (e.g., 25.04)'
+      source:
+        description: 'Source version (e.g., pre-release or 25.04)'
         required: true
+        default: 'pre-release'
         type: string
 
 jobs:
-  move-pre-release-to-latest:
+  promote-to-latest:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    - name: Promote Pre-Release to Latest
+    - name: Promote ${{ inputs.source }} to Latest
       run: |
-        VERSION="${{ inputs.version }}"
-        echo "Promoting Pre-Release to Latest for version $VERSION"
+        SOURCE="${{ inputs.source }}"
+        echo "Promoting $SOURCE to Latest"
 
         rm -rf grids/latest
         mkdir -p grids/latest
-        cp grids/$VERSION/* grids/latest/
+        cp grids/$SOURCE/* grids/latest/
+
+        if [ "$SOURCE" = "pre-release" ]; then
+          SPG_SOURCE=$(ls grids/latest/rom_grid3d_*.spg)
+          BASENAME=$(basename "$SPG_SOURCE")
+          VERSION=$(echo "$BASENAME" | sed -E 's/rom_grid3d_(.*).spg/\\1/')
+        else
+          VERSION="$SOURCE"
+        fi
 
         mv grids/latest/rom_grid3d_${VERSION}.spg grids/latest/rom_grid3d_latest.spg
 
         git config user.name "github-actions"
         git config user.email "github-actions@github.com"
         git add grids/latest
-        git commit -m "Updated Latest grid to version $VERSION"
+        git commit -m "Updated Latest grid to version $VERSION (from $SOURCE)"
         git push
