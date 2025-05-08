@@ -22,11 +22,11 @@ jobs:
         echo "Promoting Beta to Stable and updating Pre-Release for version $VERSION"
 
         mkdir -p grids/$VERSION
-        mv grids/${VERSION}-beta/* grids/$VERSION/
+        mv grids/${VERSION}/* grids/$VERSION/
 
-        mv grids/$VERSION/rom_grid3d_${VERSION}-beta.spg grids/$VERSION/rom_grid3d_${VERSION}.spg
+        mv grids/$VERSION/rom_grid3d_${VERSION}.spg grids/$VERSION/rom_grid3d_${VERSION}.spg
 
-        rm -rf grids/${VERSION}-beta
+        rm -rf grids/${VERSION}
         rm -rf grids/pre-release
 
         mkdir -p grids/pre-release
