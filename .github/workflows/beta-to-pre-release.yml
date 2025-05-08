@@ -24,9 +24,9 @@ jobs:
         mkdir -p grids/$VERSION
         mv grids/${VERSION}/* grids/$VERSION/
 
-        #mv grids/$VERSION/rom_grid3d_${VERSION}.spg grids/$VERSION/rom_grid3d_${VERSION}.spg
+        mv grids/$VERSION/rom_grid3d_${VERSION}.spg grids/$VERSION/rom_grid3d_${VERSION}.spg
 
-        #rm -rf grids/${VERSION}
+        rm -rf grids/${VERSION}
         rm -rf grids/pre-release
 
         mkdir -p grids/pre-release
