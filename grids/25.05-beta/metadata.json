@@ -7,8 +7,8 @@
         "abstract": "(C) CNC 2025",
         "notes": "First non-legacy release 2025.05",
         "release": {
-            "major": "25",
-            "minor": "5",
+            "major": 25,
+            "minor": 5,
             "revision": 0,
             "legacy": "no"
         },
