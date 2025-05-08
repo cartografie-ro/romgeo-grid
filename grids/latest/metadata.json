@@ -8,8 +8,8 @@
         "notes": "exact replica of previous version grid (4.08)",
         "release": {
             "major": 4,
-            "minor": 0,
-            "revision": 8,
+            "minor": 8,
+            "revision": 0,
             "legacy": "yes"
         },
         "release_date": "2025-04-30T00:00:00+00:00",
