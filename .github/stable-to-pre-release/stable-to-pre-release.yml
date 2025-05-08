@@ -1,0 +1,33 @@
+name: Stable to Pre-Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (e.g., 25.04)'
+        required: true
+        type: string
+
+jobs:
+  move-stable-to-pre-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Promote Beta to Stable and Update Pre-Release
+      run: |
+        VERSION="${{ inputs.version }}"
+        echo "Promoting Stable to Pre-Release for version $VERSION"
+
+        rm -rf grids/pre-release
+        mkdir -p grids/pre-release
+
+        cp grids/$VERSION/* grids/pre-release/
+
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add grids/
+        git commit -m "Promoted Beta to Stable and Updated Pre-Release for version $VERSION"
+        git push
