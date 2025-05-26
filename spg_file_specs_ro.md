@@ -10,7 +10,7 @@ Acest document descrie structura fișierelor `.spg` (Pachet de Grilă Spațială
 ## Structura Principală
 
 - **`params`** (`dict`): Parametri generali și transformări.
-- **`grids`** (`dict`): Grile de deplasare geodezică și de înălțime geoidică.
+- **`grids`** (`dict`): Griduri de deplasare geodezică și de anomalii ale altitudinii.
 - **`metadata`** (`dict`): Metadate și informații despre versiune.
 
 ---
@@ -19,8 +19,8 @@ Acest document descrie structura fișierelor `.spg` (Pachet de Grilă Spațială
 
 Parametri generali de procesare:
 
-- `geodetic_shifts_file` (`str`): Calea către grila de deplasare geodezică.
-- `geoid_heights_file` (`str`): Calea către grila de înălțime geoidică.
+- `geodetic_shifts_file` (`str`): Calea către gridul de deplasare geodezică.
+- `geoid_heights_file` (`str`): Calea către girddul de anomalie ale altitudinii.
 - `version` (`str`): Identificator de versiune.
 - `output_file` (`str`): Calea fișierului de ieșire.
 - `helmert` (`dict`): Parametrii transformării Helmert.
@@ -55,7 +55,7 @@ Fiecare grilă conține:
 - `name` (`str`): Numele grilei.
 - `source` (`str`): Sistemul de referință sursă.
 - `target` (`str`): Sistemul de referință țintă.
-- `metadata` (`dict`): Metadate ale grilei.
+- `metadata` (`dict`): Metadate ale gridului.
 - `grid` (`ndarray`): Matrice NumPy care conține datele grilei.
 
 ---
@@ -79,7 +79,7 @@ Fiecare grilă conține:
 
 ---
 
-### Înălțimi Geoidice — Metadate
+### Animalii ale altitudinii — Metadate
 
 | Câmp      | Tip    | Descriere                   |
 |-----------|--------|------------------------------|
@@ -129,7 +129,7 @@ release:
 Fiecare fișier `.spg` conține:
 
 - Detalii despre transformarea Helmert
-- Două grile spațiale (`geodetic_shifts` și `geoid_heights`)
+- Două griduri spațiale (`geodetic_shifts` și `geoid_heights`)
 - Metadate complete, inclusiv licență, atribuire și versiune
 - Date stocate sub formă de matrice NumPy eficiente
 
@@ -213,7 +213,7 @@ Fiecare grilă conține:
 
 ---
 
-### Înălțimi Geoidice — Metadate
+### Anomalii ale altitudinii — Metadate
 
 | Câmp      | Tip    | Descriere                   |
 |-----------|--------|------------------------------|
@@ -263,6 +263,6 @@ release:
 Fiecare fișier `.spg` conține:
 
 - Detalii despre transformarea Helmert
-- Două grile spațiale (`geodetic_shifts` și `geoid_heights`)
+- Două griduri spațiale (`geodetic_shifts` și `geoid_heights`)
 - Metadate complete, inclusiv licență, atribuire și versiune
 - Date stocate sub formă de matrice NumPy eficiente
