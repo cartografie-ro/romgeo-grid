@@ -50,13 +50,13 @@ Conține două grile:
 - `geodetic_shifts`
 - `geoid_heights`
 
-Fiecare grilă conține:
+Fiecare grid conține:
 
-- `name` (`str`): Numele grilei.
+- `name` (`str`): Numele gridului.
 - `source` (`str`): Sistemul de referință sursă.
 - `target` (`str`): Sistemul de referință țintă.
 - `metadata` (`dict`): Metadate ale gridului.
-- `grid` (`ndarray`): Matrice NumPy care conține datele grilei.
+- `grid` (`ndarray`): Matrice NumPy care conține datele gridului.
 
 ---
 
