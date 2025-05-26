@@ -79,7 +79,7 @@ Fiecare grilă conține:
 
 ---
 
-### Animalii ale altitudinii — Metadate
+### Anomalii ale altitudinii — Metadate
 
 | Câmp      | Tip    | Descriere                   |
 |-----------|--------|------------------------------|
