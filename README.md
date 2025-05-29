@@ -2,7 +2,7 @@
 
 [🇬🇧 English](README.md) | [🇷🇴 Română](README_ro.md)
 
-![Latest Grid](https://img.shields.io/badge/Latest_Grid-4.08-blue)
+![Latest Grid](https://img.shields.io/badge/Latest_Grid-25.05-blue)
 
 This repository contains the ROMGEO correction grids used for precise geodetic transformations.
 
