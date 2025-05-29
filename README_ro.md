@@ -4,7 +4,7 @@
 
 ![Ultimul Grid](https://img.shields.io/badge/Ultimul_Grid-4.08-blue)
 
-Acest repository conține grilele de corecție ROMGEO utilizate pentru transformări geodezice precise.
+Acest repository conține gridurile de corecție ROMGEO utilizate pentru transformări geodezice precise.
 
 ---
 
