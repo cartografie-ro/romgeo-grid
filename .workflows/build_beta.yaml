@@ -1,0 +1,25 @@
+name: Build Beta from .devel
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (e.g. 25.09)'
+        required: true
+
+jobs:
+  devel-to-beta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          ver="${{ github.event.inputs.version }}"
+          mkdir -p grids/${ver}-beta
+          cp grids/.devel/metadata.json grids/${ver}-beta/metadata.json
+          cp grids/.devel/rom_grid3d_${ver}.spg grids/${ver}-beta/rom_grid3d_${ver}-beta.spg
+          [ -f grids/.devel/rom_grid3d_${ver}.json ] && cp grids/.devel/rom_grid3d_${ver}.json grids/${ver}-beta/rom_grid3d_${ver}-beta.json
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add grids/${ver}-beta
+          git commit -m "Created beta ${ver}-beta"
+          git push
