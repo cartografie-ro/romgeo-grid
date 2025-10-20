@@ -1,4 +1,4 @@
-name: Build Beta from .devel
+name: A. Build Beta from .devel
 
 on:
   workflow_dispatch:
