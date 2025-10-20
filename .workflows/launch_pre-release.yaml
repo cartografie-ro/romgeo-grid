@@ -1,0 +1,19 @@
+name: Launch Pre-Release as Latest
+on:
+  workflow_dispatch:
+
+jobs:
+  prerelease-to-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p grids/latest
+          cp grids/pre-release/metadata.json grids/latest/metadata.json
+          cp grids/pre-release/rom_grid3d_*.spg grids/latest/rom_grid3d_latest.spg
+          [ -f $(ls grids/pre-release/rom_grid3d_*.json 2>/dev/null) ] && cp grids/pre-release/rom_grid3d_*.json grids/latest/rom_grid3d_latest.json
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add grids/latest
+          git commit -m "Updated latest from pre-release"
+          git push
