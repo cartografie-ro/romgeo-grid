@@ -1,4 +1,4 @@
-name: Promote [VERS]-beta to Stable
+name: B. Promote [VERS]-beta to Stable
 
 on:
   workflow_dispatch:
