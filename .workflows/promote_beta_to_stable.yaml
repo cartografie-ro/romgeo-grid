@@ -1,0 +1,25 @@
+name: Promote [VERS]-beta to Stable
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (e.g. 25.09)'
+        required: true
+
+jobs:
+  beta-to-stable:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          ver="${{ github.event.inputs.version }}"
+          mkdir -p grids/${ver}
+          cp grids/${ver}-beta/metadata.json grids/${ver}/metadata.json
+          cp grids/${ver}-beta/rom_grid3d_${ver}-beta.spg grids/${ver}/rom_grid3d_${ver}.spg
+          [ -f grids/${ver}-beta/rom_grid3d_${ver}-beta.json ] && cp grids/${ver}-beta/rom_grid3d_${ver}-beta.json grids/${ver}/rom_grid3d_${ver}.json
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add grids/${ver}
+          git commit -m "Promoted ${ver}-beta → ${ver}"
+          git push
