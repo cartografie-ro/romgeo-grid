@@ -1,0 +1,25 @@
+name: Promote [VERS] to Pre-Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (e.g. 25.09)'
+        required: true
+
+jobs:
+  stable-to-prerelease:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          ver="${{ github.event.inputs.version }}"
+          mkdir -p grids/pre-release
+          cp grids/${ver}/metadata.json grids/pre-release/metadata.json
+          cp grids/${ver}/rom_grid3d_${ver}.spg grids/pre-release/rom_grid3d_${ver}.spg
+          [ -f grids/${ver}/rom_grid3d_${ver}.json ] && cp grids/${ver}/rom_grid3d_${ver}.json grids/pre-release/rom_grid3d_${ver}.json
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add grids/pre-release
+          git commit -m "Promoted ${ver} → pre-release"
+          git push
