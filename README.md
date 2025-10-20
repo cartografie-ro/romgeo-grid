@@ -2,7 +2,7 @@
 
 [🇬🇧 English](README.md) | [🇷🇴 Română](README_ro.md)
 
-![Latest Grid](https://img.shields.io/badge/Latest_Grid-25.05-blue)
+![Latest Grid](https://img.shields.io/badge/Latest_Grid-25.09-blue)
 
 This repository contains the ROMGEO correction grids used for precise geodetic transformations.
 
@@ -16,7 +16,8 @@ This repository contains the ROMGEO correction grids used for precise geodetic t
 - `grids/latest/` — Latest official released version
 
 Each version contains:
-- `rom_grid3d_YY.MM.spg` — Binary grid file
+- `rom_grid3d_YY.MM.spg` — Grid file in python Pickle format
+- `rom_grid3d_YY.MM.json` — Grid file in JSON format
 - `metadata.json` — Descriptive metadata
 
 ---

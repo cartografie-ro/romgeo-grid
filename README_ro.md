@@ -2,7 +2,7 @@
 
 [🇬🇧 English](README.md) | [🇷🇴 Română](README_ro.md)
 
-![Ultimul Grid](https://img.shields.io/badge/Ultimul_Grid-25.05-blue)
+![Ultimul Grid](https://img.shields.io/badge/Ultimul_Grid-25.09-blue)
 
 Acest repository conține gridurile de corecție ROMGEO utilizate pentru transformări geodezice precise.
 
@@ -16,7 +16,8 @@ Acest repository conține gridurile de corecție ROMGEO utilizate pentru transfo
 - `grids/latest/` — Ultima versiune oficială
 
 Fiecare versiune conține:
-- `rom_grid3d_YY.MM.spg` — Fişier grid binar
+- `rom_grid3d_YY.MM.spg` — Fişier grid python pickle
+- `rom_grid3d_YY.MM.json` — Fişier grid in format JSON
 - `metadata.json` — Metadate descriptive
 
 ---
