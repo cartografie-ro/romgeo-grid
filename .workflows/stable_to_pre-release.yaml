@@ -1,4 +1,4 @@
-name: Promote [VERS] to Pre-Release
+name: C. Promote [VERS] to Pre-Release
 
 on:
   workflow_dispatch:
