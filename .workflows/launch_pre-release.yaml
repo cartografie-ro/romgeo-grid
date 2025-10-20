@@ -1,4 +1,4 @@
-name: Launch Pre-Release as Latest
+name: D. Launch Pre-Release as Latest
 on:
   workflow_dispatch:
 
