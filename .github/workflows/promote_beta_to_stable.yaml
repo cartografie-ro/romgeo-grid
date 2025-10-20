@@ -18,8 +18,10 @@ jobs:
           cp grids/${ver}-beta/metadata.json grids/${ver}/metadata.json
           cp grids/${ver}-beta/rom_grid3d_${ver}-beta.spg grids/${ver}/rom_grid3d_${ver}.spg
           [ -f grids/${ver}-beta/rom_grid3d_${ver}-beta.json ] && cp grids/${ver}-beta/rom_grid3d_${ver}-beta.json grids/${ver}/rom_grid3d_${ver}.json
+          rm -rf grids/${ver}-beta
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add grids/${ver}
-          git commit -m "Promoted ${ver}-beta → ${ver}"
+          git add grids/${ver} -A
+          git rm -r --ignore-unmatch grids/${ver}-beta
+          git commit -m "Promoted ${ver}-beta → ${ver} and removed beta folder"
           git push
